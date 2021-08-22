@@ -9,14 +9,18 @@ import { JsonService } from './json.service';
 export class AppComponent implements OnInit {
   title = 'DashRoadMap';
   camiones: any[] = [];
-  providers: any[] = [];
+  empresas: any[] = [];
   bks: any[] = [];
   databk: any[] = [];
   months: any[] = [];
   selectP: boolean = false;
 
-  constructor(public jsonService: JsonService) {
-  }
+
+  // Preguntas e indicadores
+  preguntas: any[] = [];
+  provideSelect: any[] = [];
+
+  constructor(public jsonService: JsonService) {}
 
   ngOnInit() {
     this.getData();
@@ -25,7 +29,8 @@ export class AppComponent implements OnInit {
   getData() {
     this.jsonService.getJson().subscribe(({ SalidaCamiones }) => {
       this.camiones = SalidaCamiones;
-      console.log(this.camiones);
+      this.preguntas = [...new Set(this.camiones.map(c => c.preguntas))];
+      this.empresas = [...new Set(this.camiones.map(c => c.empresa))];
     });
   }
 
@@ -36,26 +41,15 @@ export class AppComponent implements OnInit {
   }*/
 
   selectProvider($event: any) {
-    this.providers = this.camiones.filter((dato, i) => {
-      const { empresa } = dato;
-      return empresa === $event.target.value;
-    });
-
+    this.provideSelect = this.camiones.filter(({ empresa }, i) => empresa === $event.target.value);
     this.selectP = true;
-    this.bks = this.providers.reduce( (a,b) => {
-      const i = a.findIndex( (x:any) => x.bk === b.bk);
-      return i === -1 ? a.push({ bk : b.bk, times : 1 }) : a[i].times++, a;
-    }, []);
-
-    this.months = this.providers.reduce( (a,b) => {
-      const i = a.findIndex( (x:any) => x.mes === b.mes);
-      return i === -1 ? a.push({ mes : b.mes, times : 1 }) : a[i].times++, a;
-    }, []);
+    this.bks = [...new Set(this.provideSelect.map(b => b.bk))];
+    this.months = [...new Set(this.provideSelect.map(b => b.mes))]
   }
 
   selectBk($event: any) {
     console.log($event.target.value);
-    this.databk = this.providers.filter((dato, i) => {
+    this.databk = this.provideSelect.filter((dato, i) => {
       const { bk } = dato;
       return bk === $event.target.value;
     });
