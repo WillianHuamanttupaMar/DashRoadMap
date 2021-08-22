@@ -1,0 +1,125 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <select class="form-select" (change)="selectProvider($event)">
+        <option selected>Seleccionar proveedor</option>
+        <option value="DICORJES E.I.R.L.">DICORJES</option>
+        <option value="EL AMANECER S.R.LTDA.">AMANECER</option>
+        <option value="PAJCHA">PAJCHA</option>
+      </select>
+    </div>
+    <div *ngIf="selectP" class="col">
+      <select class="form-select" (change)="selectBk($event)">
+        <option *ngFor="let bk of bks" [value]="bk.bk">{{bk.bk}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <select (change)="selectMonth($event)"  class="form-select">
+        <option *ngFor="let month of months" [value]="month.mes" >{{month.mes}}</option>
+      </select>
+    </div>
+    <div class="form-row mt-3">
+      <div class="table-responsive-md ">
+        <table class="table">
+          <thead>
+              <tr>
+                  <th>Preguntas</th>
+                  <th>Enero</th>
+                  <th>Febrero</th>
+                  <th>Marzo</th>
+                  <th>Abril</th>
+                  <th>Mayo</th>
+                  <th>Junio</th>
+                  <th>Julio</th>
+                  <th>Agosto</th>
+                  <th>Setiembre</th>
+                  <th>Octubre</th>
+                  <th>Noviembre</th>
+                  <th>Diciembre</th>
+                  <th>Total General</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>
+                      <p class="moretext">
+                          ¿El conductor cumplió con la inspección física de la unidad, desinfección de
+                          superficies
+                          de contacto según protocolo COVID y llenado del check list de inspección?
+                      </p>
+                  </td>
+                  <td>100 %</td>
+                  <td>100%</td>
+                  <td>61%</td>
+                  <td>89%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+
+
+              </tr>
+
+              <tr>
+                  <td>¿El conductor cumplió con check list de inspección? </td>
+                  <td>100 %</td>
+                  <td>100%</td>
+                  <td>61%</td>
+                  <td>89%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+              </tr>
+              <tr>
+                  <td>¿El conductor cumplió con check list de inspección? </td>
+                  <td>100 %</td>
+                  <td>100%</td>
+                  <td>61%</td>
+                  <td>89%</td>
+                  <td>82%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+                  <td>100%</td>
+              </tr>
+          </tbody>
+          <tfoot>
+              <tr>
+                  <th>Preguntas</th>
+                  <th>Enero</th>
+                  <th>Febrero</th>
+                  <th>Marzo</th>
+                  <th>Abril</th>
+                  <th>Mayo</th>
+                  <th>Junio</th>
+                  <th>Julio</th>
+                  <th>Agosto</th>
+                  <th>Setiembre</th>
+                  <th>Octubre</th>
+                  <th>Noviembre</th>
+                  <th>Diciembre</th>
+                  <th>Total General</th>
+              </tr>
+
+          </tfoot>
+      </table>
+      </div>
+    </div>
+  </div>
+
+    </div>
