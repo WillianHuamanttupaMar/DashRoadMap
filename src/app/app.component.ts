@@ -144,24 +144,37 @@ export class AppComponent implements OnInit {
 
       const abril = groupQuestions['April'];
       const agosto = groupQuestions['August'];
+      const julio = groupQuestions['July'];
+      const junio = groupQuestions['June'];
+      const marzo = groupQuestions['March'];
+      const mayo = groupQuestions['May'];
 
       const abrilResultados = this.groupByPercente(abril);
       const agostoResultados = this.groupByPercente(agosto);
-      console.log(abrilResultados);
+      const julioResultados = this.groupByPercente(julio);
+      const junioResultados = this.groupByPercente(junio);
+      const marzoResultados = this.groupByPercente(marzo);
+      const mayoResultados = this.groupByPercente(mayo);
+
+      const todos = [...abrilResultados, ...agostoResultados, ...julioResultados, ...junioResultados, ...marzoResultados, ...mayoResultados];
+      // console.log(abrilResultados);
       // console.log(agostoResultados);
 
-      const oficial = [
-        {
-          name: 'Abril',
-          mes: abrilResultados,
-        },
-        {
-          name: 'Agosto',
-          mes: agostoResultados,
-        }
-      ]
+      const temporal = this.groupBy(todos, 'pregunta');
+      console.log(temporal); 
 
-      console.log(oficial)
+      // const oficial = [
+      //   {
+      //     name: 'Abril',
+      //     mes: abrilResultados,
+      //   },
+      //   {
+      //     name: 'Agosto',
+      //     mes: agostoResultados,
+      //   }
+      // ]
+
+      // console.log(oficial)
 
 
       // console.log(groupQuestions)
