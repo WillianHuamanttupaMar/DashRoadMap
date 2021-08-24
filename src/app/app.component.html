@@ -24,7 +24,7 @@
           <thead>
               <tr>
                   <th>Preguntas</th>
-                  <th>Enero</th>
+                  <!-- <th>Enero</th>
                   <th>Febrero</th>
                   <th>Marzo</th>
                   <th>Abril</th>
@@ -36,20 +36,60 @@
                   <th>Octubre</th>
                   <th>Noviembre</th>
                   <th>Diciembre</th>
-                  <th>Total General</th>
+                  <th>Total General</th> -->
               </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let pregunta of preguntas">
+              <tr *ngFor="let pregunta of pruebatempora">
                   <td>
                       <p class="moretext">
                           {{pregunta.pregunta}}
                       </p>
-                      <!-- <td *ngFor="let mes of pregunta.meses">
-                        hola mes
-                      </td> -->
+                      <table class="table mb-0">
+                        <thead>
+                          <tr>
+                            <th>Enero</th>
+                            <th>Febrero</th>
+                            <th>Marzo</th>
+                            <th>Abril</th>
+                            <th>Mayo</th>
+                            <th>Junio</th>
+                            <th>Julio</th>
+                            <th>Agosto</th>
+                            <th>Setiembre</th>
+                            <th>Octubre</th>
+                            <th>Noviembre</th>
+                            <th>Diciembre</th>
+                            <th>Total General</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr >
+                            <div *ngFor="let item of pregunta.data">
+                              <!-- <th *ngIf="item.mes === 'January'">
+                                0%
+                              </th> -->
+                              <th>
+                                hola
+                              </th>
+                            </div>
+                            <!-- <td>First</td> -->
+                            <!-- <td>Last</td> -->
+                          </tr>
+                          <!-- <tr>
+                            <th scope="row">B</th>
+                            <td>First</td>
+                            <td>Last</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">C</th>
+                            <td>First</td>
+                            <td>Last</td>
+                          </tr> -->
+                        </tbody>
+                      </table>
                   </td>
-                  <td>100 %</td>
+                  <!-- <td>100 %</td>
                   <td>100%</td>
                   <td>61%</td>
                   <td>89%</td>
@@ -61,10 +101,10 @@
                   <td>100%</td>
                   <td>100%</td>
                   <td>100%</td>
-                  <td>100%</td>
+                  <td>100%</td> -->
               </tr>
           </tbody>
-          <tfoot>
+          <!-- <tfoot>
               <tr>
                   <th>Preguntas</th>
                   <th>Enero</th>
@@ -82,7 +122,7 @@
                   <th>Total General</th>
               </tr>
 
-          </tfoot>
+          </tfoot> -->
       </table>
       </div>
     </div>

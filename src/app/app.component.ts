@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
   provideSelect: any[] = [];
   meses: any[] = [];
 
+
+  pruebatempora: any[] = [];
+
   constructor(public jsonService: JsonService) { }
 
   ngOnInit() {
@@ -54,7 +57,7 @@ export class AppComponent implements OnInit {
     }
 
 
-    resultados.sort(function (a:any, b:any) {
+    resultados.sort(function (a: any, b: any) {
       return a[0] - b[0];
     });
 
@@ -141,27 +144,75 @@ export class AppComponent implements OnInit {
       // console.log(...groupQuestionsTwo)
 
       const enero = groupQuestions['January'];
-
-      const abril = groupQuestions['April'];
-      const agosto = groupQuestions['August'];
-      const julio = groupQuestions['July'];
-      const junio = groupQuestions['June'];
+      // const febrero = groupQuestions['February'];
       const marzo = groupQuestions['March'];
+      const abril = groupQuestions['April'];
       const mayo = groupQuestions['May'];
+      const junio = groupQuestions['June'];
+      const julio = groupQuestions['July'];
+      const agosto = groupQuestions['August'];
+      // const septiembre = groupQuestions['September'];
+      // const octubre = groupQuestions['October'];
+      // const noviembre = groupQuestions['November'];
+      // const diciembre = groupQuestions['December'];
 
-      const abrilResultados = this.groupByPercente(abril);
-      const agostoResultados = this.groupByPercente(agosto);
-      const julioResultados = this.groupByPercente(julio);
-      const junioResultados = this.groupByPercente(junio);
+      console.log(enero)
+      let eneroResultados
+      if (enero) eneroResultados = this.groupByPercente(enero);
+      // const febreroResultados = this.groupByPercente(febrero);
       const marzoResultados = this.groupByPercente(marzo);
+      const abrilResultados = this.groupByPercente(abril);
       const mayoResultados = this.groupByPercente(mayo);
+      const junioResultados = this.groupByPercente(junio);
+      const julioResultados = this.groupByPercente(julio);
+      let agostoResultados
+      if (agosto) agostoResultados = this.groupByPercente(agosto);
+      // const septiembreResultados = this.groupByPercente(septiembre);
+      // const octubreResultados = this.groupByPercente(octubre);
+      // const noviembreResultados = this.groupByPercente(noviembre);
+      // const diciembreResultados = this.groupByPercente(diciembre);
 
-      const todos = [...abrilResultados, ...agostoResultados, ...julioResultados, ...junioResultados, ...marzoResultados, ...mayoResultados];
+      console.log(agostoResultados)
+
+      const todos = [
+        // ...eneroResultados,
+        // ...febreroResultados,
+        ...marzoResultados,
+        ...abrilResultados,
+        ...mayoResultados,
+        ...junioResultados,
+        ...julioResultados,
+        ...agostoResultados,
+        // ...septiembreResultados,
+        // ...octubreResultados,
+        // ...noviembreResultados,
+        // ...diciembreResultados
+      ];
       // console.log(abrilResultados);
       // console.log(agostoResultados);
 
       const temporal = this.groupBy(todos, 'pregunta');
-      console.log(temporal); 
+      // console.log(temporal); 
+
+      for (const pregunta in temporal) {
+        // this.pruebatempora.push({pregunta: pregunta, meses: temporal[pregunta]});
+        // console.log(temporal[pregunta])
+        const data = [];
+        for (const key in temporal[pregunta]) {
+          // console.log(temporal[pregunta][key].mes);
+          data.push({ mes: temporal[pregunta][key].mes, valor: temporal[pregunta][key].valor, porcentaje: Math.round(temporal[pregunta][key].porcentaje * 100) / 100, contador: temporal[pregunta][key].contador })
+        }
+        data.unshift({ mes: 'January', valor: 0, porcentaje: 0, contador: 0}, { mes: 'February', valor: 0, porcentaje: 0, contador: 0});
+        data.unshift({})
+        // console.log(mes)
+        this.pruebatempora.push({ pregunta, data })
+      }
+
+      console.log(this.pruebatempora)
+
+
+
+      // console.log(this.pruebatempora)
 
       // const oficial = [
       //   {
