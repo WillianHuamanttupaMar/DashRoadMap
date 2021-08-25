@@ -74,6 +74,7 @@ export class AppComponent implements OnInit {
 
   getData() {
     this.jsonService.getJson().subscribe(({ SalidaCamiones }) => {
+      console.log(SalidaCamiones);
       this.camiones = SalidaCamiones;
       this.preguntas = [...new Set(this.camiones.map(c => c.preguntas))];
       this.empresas = [...new Set(this.camiones.map(c => c.empresa))];
@@ -192,7 +193,7 @@ export class AppComponent implements OnInit {
       // console.log(agostoResultados);
 
       const temporal = this.groupBy(todos, 'pregunta');
-      // console.log(temporal); 
+      // console.log(temporal);
 
       for (const pregunta in temporal) {
         // this.pruebatempora.push({pregunta: pregunta, meses: temporal[pregunta]});
@@ -203,7 +204,6 @@ export class AppComponent implements OnInit {
           data.push({ mes: temporal[pregunta][key].mes, valor: temporal[pregunta][key].valor, porcentaje: Math.round(temporal[pregunta][key].porcentaje * 100) / 100, contador: temporal[pregunta][key].contador })
         }
         data.unshift({ mes: 'January', valor: 0, porcentaje: 0, contador: 0}, { mes: 'February', valor: 0, porcentaje: 0, contador: 0});
-        data.unshift({})
         // console.log(mes)
         this.pruebatempora.push({ pregunta, data })
       }
