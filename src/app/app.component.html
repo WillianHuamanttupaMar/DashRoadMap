@@ -13,52 +13,46 @@
       </select>
     </div>
     <div *ngIf="selectP" class="col">
-      <select (change)="selectMonth($event)"  class="form-select">
+      <select (change)="selectMonth($event)" class="form-select">
         <option selected>Seleccionar mes</option>
-        <option *ngFor="let month of months" [value]="month" >{{month}}</option>
+        <option *ngFor="let month of months" [value]="month">{{month}}</option>
       </select>
     </div>
     <div class="form-row mt-3">
       <div class="table-responsive-md ">
         <table class="table">
           <thead>
-              <tr>
-                  <th>Preguntas</th>
-                  <th>Enero</th>
-                  <th>Febrero</th>
-                  <th>Marzo</th>
-                  <th>Abril</th>
-                  <th>Mayo</th>
-                  <th>Junio</th>
-                  <th>Julio</th>
-                  <th>Agosto</th>
-                  <th>Setiembre</th>
-                  <th>Octubre</th>
-                  <th>Noviembre</th>
-                  <th>Diciembre</th>
-                  <th>Total General</th>
-              </tr>
+            <tr>
+              <th>Preguntas</th>
+              <th>Enero</th>
+              <th>Febrero</th>
+              <th>Marzo</th>
+              <th>Abril</th>
+              <th>Mayo</th>
+              <th>Junio</th>
+              <th>Julio</th>
+              <th>Agosto</th>
+              <th>Total General</th>
+            </tr>
           </thead>
           <tbody>
-              <tr *ngFor="let pregunta of pruebatempora">
-                  <td>
-                      <p class="moretext">
-                          {{pregunta.pregunta}}
-                      </p>
-                  </td>
-                  <td>{{pregunta.data[0].porcentaje}}%</td>
-                  <td>{{pregunta.data[1].porcentaje}}%</td>
-                  <td>{{pregunta.data[2].porcentaje}}%</td>
-                  <td>{{pregunta.data[3].porcentaje}}%</td>
-                  <td>{{pregunta.data[4].porcentaje}}%</td>
-                  <td>{{pregunta.data[5].porcentaje}}%</td>
-                  <td>{{pregunta.data[6].porcentaje}}%</td>
-                  <td>{{pregunta.data[7].porcentaje}}%</td>
-                  <td>100%</td>
-                  <td>100%</td>
-                  <td>100%</td>
-                  <td>100%</td>
-              </tr>
+            <tr *ngFor="let pregunta of pruebatempora">
+              <td>
+                <p class="moretext">
+                  {{pregunta.pregunta}}
+                </p>
+              </td>
+              <td [ngClass]="{'bg-danger': 95 > pregunta.data[0].porcentaje,  'bg-success': 95 < pregunta.data[0].porcentaje}">{{pregunta.data[0].porcentaje}}%</td>
+              <td [ngClass]="{'bg-danger': 95 > pregunta.data[1].porcentaje,  'bg-success': 95 < pregunta.data[1].porcentaje }">{{pregunta.data[1].porcentaje}}%</td>
+              <td [ngClass]="{'bg-danger': 95 > pregunta.data[2].porcentaje,  'bg-success': 95 < pregunta.data[2].porcentaje }">{{pregunta.data[2].porcentaje}}%</td>
+              <td [ngClass]="{'bg-danger': 95 > pregunta.data[3].porcentaje,  'bg-success': 95 < pregunta.data[3].porcentaje }">{{pregunta.data[3].porcentaje}}%</td>
+              <td [ngClass]="{'bg-danger': 95 > pregunta.data[4].porcentaje, 'bg-warning':  98 > pregunta.data[4].porcentaje, 'bg-success': 99 <= pregunta.data[4].porcentaje }">{{pregunta.data[4].porcentaje}}%</td>
+              <td [ngClass]="{'bg-danger': 95 > pregunta.data[5].porcentaje,  'bg-success': 95 < pregunta.data[5].porcentaje }">{{pregunta.data[5].porcentaje}}%</td>
+              <td [ngClass]="{'bg-danger': 95 > pregunta.data[6].porcentaje,  'bg-success': 95 < pregunta.data[6].porcentaje }">{{pregunta.data[6].porcentaje}}%</td>
+              <td [ngClass]="{'bg-danger': 95 > pregunta.data[7].porcentaje,  'bg-success': 95 < pregunta.data[7].porcentaje }">{{pregunta.data[6].porcentaje}}%</td>
+              <!--<td>{{( pregunta.data[3].porcentaje + pregunta.data[4].porcentaje + pregunta.data[5].porcentaje + pregunta.data[6].porcentaje + pregunta.data[7].porcentaje * 100) /  pregunta.data[3].contador + pregunta.data[4].contador + pregunta.data[5].contador + pregunta.data[6].contador + pregunta.data[7].contador  }} %</td>-->
+              <td>{{( pregunta.data[3].porcentaje + pregunta.data[4].porcentaje + pregunta.data[5].porcentaje + pregunta.data[6].porcentaje + pregunta.data[7].porcentaje)/ 5}} %</td>
+            </tr>
           </tbody>
           <!-- <tfoot>
               <tr>
@@ -79,9 +73,34 @@
               </tr>
 
           </tfoot> -->
-      </table>
+        </table>
       </div>
     </div>
   </div>
+</div>
 
+<div class="flex">
+  <div class="flex-item">
+    <div style="display: block;">
+    <canvas baseChart width="400" height="400"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)"></canvas>
     </div>
+  </div>
+  <div class="flex-item">
+    <table class="table table-responsive table-condensed">
+      <tr>
+        <th *ngFor="let label of lineChartLabels">{{label}}</th>
+      </tr>
+    </table>
+    <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
+    <button mat-button mat-raised-button color="primary" (click)="changeColor()">Recolor</button>
+    <button mat-button mat-raised-button color="primary" (click)="hideOne()">Toggle Series B</button>
+    <button mat-button mat-raised-button color="primary" (click)="changeLabel()">Change Label</button>
+  </div>
+</div>

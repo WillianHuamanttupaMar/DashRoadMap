@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { BaseChartDirective, Color, Label } from 'ng2-charts';
 import { JsonService } from './json.service';
 
 @Component({
@@ -23,6 +25,15 @@ export class AppComponent implements OnInit {
 
 
   pruebatempora: any[] = [];
+
+
+  public lineChartData: ChartDataSets[] = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
+    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
+  ];
+
+  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
   constructor(public jsonService: JsonService) { }
 
@@ -74,175 +85,59 @@ export class AppComponent implements OnInit {
 
   getData() {
     this.jsonService.getJson().subscribe(({ SalidaCamiones }) => {
-      console.log(SalidaCamiones);
       this.camiones = SalidaCamiones;
       this.preguntas = [...new Set(this.camiones.map(c => c.preguntas))];
       this.empresas = [...new Set(this.camiones.map(c => c.empresa))];
-      // const meses = [...new Set(this.camiones.map(c => c.mes))];
-      // console.log(meses);
-
-      // const unique = this.camiones.filter((set => (f:any) => !set.has(f.preguntas) && set.add(f.preguntas))(new Set));
-      // console.log('hola mundo',unique);
 
       this.camiones = SalidaCamiones.map((temp: any) => ({ ...temp, contador: Number(temp.contador), respuesta_valor: Number(temp.respuesta_valor) }));
 
-      //  console.log(this.camiones);
-
-      // const res = this.camiones.reduce((a, {preguntas, contador}) => (a[preguntas] = (a[preguntas] || 0) + +contador, a), {});
-      // console.log(res)
-
-
-      // const temporal = SalidaCamiones.map((temp: any) => {
-      //   const mes:any = {};
-      //   switch (temp.mes) {
-      //     case 'January':
-      //       console.log('Enero',temp);
-      //       break;
-      //     case 'February':
-      //       console.log('Febrero',temp);
-      //       break;
-      //     case 'March':
-      //       console.log('Marzo',temp);
-      //       break;
-      //     case 'April':
-      //       console.log('Abril',temp);
-      //       break;
-      //     case 'May':
-      //       console.log('Mayo',temp);
-      //       break;
-      //     case 'June':
-      //       console.log('Junio',temp);
-      //       break;
-      //     case 'July':
-      //       console.log('Julio',temp);
-      //       break;
-      //     case 'August':
-      //       console.log('Agosto',temp);
-      //       break;
-      //     case 'September':
-      //       console.log('Setiembre',temp);
-      //       break;
-      //     case 'October':
-      //       console.log('Octubre',temp);
-      //       break;
-      //     case 'November':
-      //       console.log('Noviembre',temp);
-      //       break;
-      //     case 'December':
-      //       console.log('Diciembre',temp);
-      //       break;
-      //     default:
-      //         console.log('hola mudno')
-      //   }
-
-      // });
-
-
+      console.log(this.camiones);
 
       const groupQuestions = this.groupBy(this.camiones, 'mes');
-      // console.log(groupQuestions)
-      // const groupQuestionsTwo = this.groupByTwo(this.camiones, 'preguntas');
-      // console.log(...groupQuestionsTwo)
 
-      const enero = groupQuestions['January'];
-      // const febrero = groupQuestions['February'];
-      const marzo = groupQuestions['March'];
-      const abril = groupQuestions['April'];
-      const mayo = groupQuestions['May'];
-      const junio = groupQuestions['June'];
-      const julio = groupQuestions['July'];
-      const agosto = groupQuestions['August'];
-      // const septiembre = groupQuestions['September'];
-      // const octubre = groupQuestions['October'];
-      // const noviembre = groupQuestions['November'];
-      // const diciembre = groupQuestions['December'];
+      const abril = groupQuestions['04']
+      const mayo = groupQuestions['05']
+      const junio = groupQuestions['06'];
+      const julio = groupQuestions['07'];
+      const agosto = groupQuestions['08'];
 
-      console.log(enero)
-      let eneroResultados
-      if (enero) eneroResultados = this.groupByPercente(enero);
-      // const febreroResultados = this.groupByPercente(febrero);
-      const marzoResultados = this.groupByPercente(marzo);
       const abrilResultados = this.groupByPercente(abril);
       const mayoResultados = this.groupByPercente(mayo);
       const junioResultados = this.groupByPercente(junio);
       const julioResultados = this.groupByPercente(julio);
-      let agostoResultados
-      if (agosto) agostoResultados = this.groupByPercente(agosto);
-      // const septiembreResultados = this.groupByPercente(septiembre);
-      // const octubreResultados = this.groupByPercente(octubre);
-      // const noviembreResultados = this.groupByPercente(noviembre);
-      // const diciembreResultados = this.groupByPercente(diciembre);
+      const agostoResultados = this.groupByPercente(agosto);
 
-      console.log(agostoResultados)
+
 
       const todos = [
-        // ...eneroResultados,
-        // ...febreroResultados,
-        ...marzoResultados,
         ...abrilResultados,
         ...mayoResultados,
         ...junioResultados,
         ...julioResultados,
-        ...agostoResultados,
-        // ...septiembreResultados,
-        // ...octubreResultados,
-        // ...noviembreResultados,
-        // ...diciembreResultados
+        ...agostoResultados
       ];
-      // console.log(abrilResultados);
-      // console.log(agostoResultados);
+
 
       const temporal = this.groupBy(todos, 'pregunta');
-      // console.log(temporal);
 
       for (const pregunta in temporal) {
-        // this.pruebatempora.push({pregunta: pregunta, meses: temporal[pregunta]});
-        // console.log(temporal[pregunta])
+
         const data = [];
         for (const key in temporal[pregunta]) {
-          // console.log(temporal[pregunta][key].mes);
           data.push({ mes: temporal[pregunta][key].mes, valor: temporal[pregunta][key].valor, porcentaje: Math.round(temporal[pregunta][key].porcentaje * 100) / 100, contador: temporal[pregunta][key].contador })
         }
-        data.unshift({ mes: 'January', valor: 0, porcentaje: 0, contador: 0}, { mes: 'February', valor: 0, porcentaje: 0, contador: 0});
+        data.unshift(
+          { mes: '01', valor: 0, porcentaje: 0, contador: 0},
+          { mes: '02', valor: 0, porcentaje: 0, contador: 0},
+          { mes: '03', valor: 0, porcentaje: 0, contador: 0},
+        );
         // console.log(mes)
         this.pruebatempora.push({ pregunta, data })
       }
-
-      console.log(this.pruebatempora)
-
-
-
-      // console.log(this.pruebatempora)
-
-      // const oficial = [
-      //   {
-      //     name: 'Abril',
-      //     mes: abrilResultados,
-      //   },
-      //   {
-      //     name: 'Agosto',
-      //     mes: agostoResultados,
-      //   }
-      // ]
-
-      // console.log(oficial)
-
-
-      // console.log(groupQuestions)
-      // const groupMonths = this.groupBy(groupQuestions['1. ¿El conductor cumplió con la inspección física de la unidad y llenado del check list de inspección?'], 'mes');
-      // console.log(groupMonths);
-      // const temporal:any = [];
-
-      // console.log(groupQuestions)
-      // for (const key in groupQuestions) {
-      //   const meses = this.groupBy(groupQuestions[key], 'mes');
-      //   this.preguntas.push({pregunta: key, meses});
-      // }
-
-      // console.log(this.preguntas)
+      console.log(this.pruebatempora);
     });
-
   }
+
 
   /*groupByQuestions( data: any) {
     data.reduce( (res:any, value:any) => {
@@ -267,6 +162,122 @@ export class AppComponent implements OnInit {
 
   selectMonth($event: any) {
     console.log($event.target.value);
+  }
+
+
+
+
+
+
+  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+    responsive: true,
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      xAxes: [{}],
+      yAxes: [
+        {
+          id: 'y-axis-0',
+          position: 'left',
+        },
+        {
+          id: 'y-axis-1',
+          position: 'right',
+          gridLines: {
+            color: 'rgba(255,0,0,0.3)',
+          },
+          ticks: {
+            fontColor: 'red',
+          }
+        }
+      ]
+    },
+    annotation: {
+      annotations: [
+        {
+          type: 'line',
+          mode: 'vertical',
+          scaleID: 'x-axis-0',
+          value: 'March',
+          borderColor: 'orange',
+          borderWidth: 2,
+          label: {
+            enabled: true,
+            fontColor: 'orange',
+            content: 'LineAnno'
+          }
+        },
+      ],
+    },
+  };
+  public lineChartColors: Color[] = [
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    },
+    { // dark grey
+      backgroundColor: 'rgba(77,83,96,0.2)',
+      borderColor: 'rgba(77,83,96,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
+    },
+    { // red
+      backgroundColor: 'rgba(255,0,0,0.3)',
+      borderColor: 'red',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    }
+  ];
+  public lineChartLegend = true;
+  public lineChartType: ChartType = 'line';
+  //public lineChartPlugins = [pluginAnnotations];
+
+  @ViewChild(BaseChartDirective, { static: true }) chart: any;
+
+
+
+
+  private generateNumber(i: number): number {
+    return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
+  }
+
+  // events
+  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
+
+  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
+    console.log(event, active);
+  }
+
+  public hideOne(): void {
+    const isHidden = this.chart.isDatasetHidden(1);
+    this.chart.hideDataset(1, !isHidden);
+  }
+
+  public pushOne(): void {
+    this.lineChartData.forEach((x, i) => {
+      const num = this.generateNumber(i);
+      const data: number[] = x.data as number[];
+      data.push(num);
+    });
+    this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
+  }
+
+  public changeColor(): void {
+    this.lineChartColors[2].borderColor = 'green';
+    this.lineChartColors[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
+  }
+
+  public changeLabel(): void {
+    this.lineChartLabels[2] = ['1st Line', '2nd Line'];
   }
 
 }
