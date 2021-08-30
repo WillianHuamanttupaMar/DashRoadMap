@@ -8,7 +8,7 @@ import { JsonService } from './../../json.service';
 })
 export class VisitClientsComponent implements OnInit {
 
-  id_preguntas:any [] = [];
+  preguntas:any [] = [];
 
   constructor(
     public jsonService: JsonService
@@ -21,7 +21,24 @@ export class VisitClientsComponent implements OnInit {
   getClientmes(){
     this.jsonService.getClientmes().subscribe((res: any) => {
       console.log(res);
+      this.preguntas = res.VisitaClientesMotivoMes.map((res: any) => {
+        return{
+          abr: Number(res.Abr),
+            ago: Number(res.Ago),
+            dic: Number(res.Dic),
+            ene: Number(res.Ene),
+            feb: Number(res.Feb),
+            jul: Number(res.Jul),
+            jun: Number(res.Jun),
+            mar: Number(res.Mar),
+            may: Number(res.May),
+            nov: Number(res.Nov),
+            oct: Number(res.Oct),
+            sep: Number(res.Sep),
+            pregunta: res.preguntas
+        }
+      })
 
     })
-}
+  }
 }
