@@ -67,6 +67,10 @@ export class JsonService {
 
     return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadMes.php`,{params});
   }
+  getClientRuta() {
+    return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadRuta.php`);
+  }
+
 }
 
 

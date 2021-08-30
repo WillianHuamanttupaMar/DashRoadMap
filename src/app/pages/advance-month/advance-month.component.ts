@@ -18,7 +18,7 @@ export class AdvanceMonthComponent implements OnInit {
 
   dataEmpresa: any [] = [];
   bks: any[] = [];
-  databk: any[] = [];
+
 
   companyName: string = "";
 

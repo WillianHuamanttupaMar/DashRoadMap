@@ -9,6 +9,11 @@ import { JsonService } from './../../json.service';
 export class VisitClientsComponent implements OnInit {
 
   preguntas:any [] = [];
+  proveedores: any [] = [];
+  empresas:any [] = [];
+  bks: any[] = [];
+  dataEmpresa: any [] = [];
+  companyName: string = "";
 
   constructor(
     public jsonService: JsonService
@@ -16,6 +21,7 @@ export class VisitClientsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getClientmes();
+    this.getClientRuta();
   }
 
   getClientmes(){
@@ -41,4 +47,39 @@ export class VisitClientsComponent implements OnInit {
 
     })
   }
+  getClientRuta() {
+  this.jsonService.getClientmes().subscribe((resp: any) => {
+    console.log(resp)
+    this.proveedores = [...new Set(resp.VistaClientesMotivoCalidadRUTA.map((e:any) => e.empresa))]
+      this.bks = [...new Set(this.proveedores.map(b => b.bk))];
+
+      this.empresas = resp.VistaClientesMotivoCalidadRUTA.map((res: any) => {
+        console.log()
+        return {
+          abr: Number(res.Abr),
+          ago: Number(res.Ago),
+          dic: Number(res.Dic),
+          ene: Number(res.Ene),
+          feb: Number(res.Feb),
+          jul: Number(res.Jul),
+          jun: Number(res.Jun),
+          mar: Number(res.Mar),
+          may: Number(res.May),
+          nov: Number(res.Nov),
+          oct: Number(res.Oct),
+          sep: Number(res.Seb),
+          empresa: res.empresa,
+          bk: res.bk
+        }
+      });
+
+
+
+
+    })
+  }
+
+
+
+
 }
