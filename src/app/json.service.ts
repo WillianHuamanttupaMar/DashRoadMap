@@ -35,16 +35,11 @@ export class JsonService {
    }
 
   getJson(){
-    console.log('hola mundo ',this.usuariocentro);
     let params = new HttpParams();
-    params = params.append('centro', this.usuariocentro);
-    params = params.append('fechaIni', '2021-05-01');
-    params = params.append('fechaFin', '2021-08-31');
-    params = params.append('empresaT2', 'DICORJES 20E.I.R.L.');
-    params = params.append('rutaT2', 'BK7703');
-    console.log(`${url}/owdT2/salidadeCamionesMes.php`);
-
-    return this.http.get(`${url}/owdT2/salidadeCamionesMes.php`, {params});
+    // params = params.append('centro', this.usuariocentro);
+    // params = params.append('fechaIni', '2021-01-01');
+    // params = params.append('fechaFin', '2021-12-31');
+    return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadMes.php?centro=BK77&fechaIni=2021-01-01&fechaFin=2021-12-31`);
   }
 
   getData() {
@@ -65,6 +60,7 @@ export class JsonService {
     params = params.append('fechaFin', '2021-12-31');
     return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadMes.php`,{params});
   }
+
   getClientRuta() {
     return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadRuta.php`);
   }
@@ -72,16 +68,19 @@ export class JsonService {
   getLlegadaCam(){
     let params = new HttpParams();
     params = params.append('centro', this.usuariocentro);
-    params = params.append('fechaIni', '2021-01-01');
-    params = params.append('fechaFin', '2021-12-31');
+    params = params.append('fechaIni', '2021-05-01');
+    params = params.append('fechaFin', '2021-08-31');
     console.log(`${url}/owdT2/salidadeCamionesMes.php`);
     return this.http.get(`${url}/owdT2/llegadadeCamionesMes.php`,{params});
 
   }
 
-  getCamionesRuta() {
-    return this.http.get(`${url}/owdT2/llegadadeCamionesRuta.php`);
-
+  getCamionesRuta( fechaini: string, fechafin: string) {
+    let params = new HttpParams();
+    params = params.append('centro', this.usuariocentro);
+    params = params.append('fechaIni', fechaini);
+    params = params.append('fechaFin', fechafin);
+    return this.http.get(`${url}/owdT2/llegadadeCamionesRuta.php`, { params });
 }
 
 }

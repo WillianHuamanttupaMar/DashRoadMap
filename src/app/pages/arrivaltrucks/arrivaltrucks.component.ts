@@ -20,6 +20,9 @@ export class ArrivaltrucksComponent implements OnInit {
 
   isChart: boolean = true;
 
+  fechaInicio: string = '2021-05-01';
+  fechaFin: string = '2021-08-31';
+
 
   constructor(
     public jsonService: JsonService
@@ -32,7 +35,6 @@ export class ArrivaltrucksComponent implements OnInit {
 
   getLlegadaCam(){
     this.jsonService.getLlegadaCam().subscribe((resp: any) => {
-      console.log(resp);
       this.preguntas = resp.LLegadaCamionesMes.map((resp: any) => {
           return {
             abr: Number(resp.Abr),
@@ -53,11 +55,9 @@ export class ArrivaltrucksComponent implements OnInit {
     })
   }
   getCamionesRuta() {
-    this.jsonService.getCamionesRuta().subscribe((resp: any) => {
-      console.log(resp)
+    this.jsonService.getCamionesRuta(this.fechaInicio, this.fechaFin).subscribe((resp: any) => {
       this.proveedores = [...new Set(resp.LLegadaCamionesCumplimiento.map((e:any) => e.empresa))]
         this.bks = [...new Set(this.proveedores.map(b => b.bk))];
-
         this.empresas = resp.LLegadaCamionesCumplimiento.map((res: any) => {
           console.log()
           return {

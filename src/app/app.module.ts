@@ -11,6 +11,7 @@ import { AdvanceMonthComponent } from './pages/advance-month/advance-month.compo
 import { ResporteZoneComponent } from './pages/resporte-zone/resporte-zone.component';
 import { VisitClientsComponent } from './pages/visit-clients/visit-clients.component';
 import { ArrivaltrucksComponent } from './pages/arrivaltrucks/arrivaltrucks.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ArrivaltrucksComponent } from './pages/arrivaltrucks/arrivaltrucks.comp
     AppRoutingModule,
     HttpClientModule,
     ChartsModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   providers: [
     CookieService

@@ -70,7 +70,8 @@ export class AdvanceMonthComponent implements OnInit {
 
   getData() {
     this.jsonService.getJson().subscribe((resp: any) => {
-      this.preguntas = resp.SalidaCamiones.map((resp: any) => {
+      console.log('gaaaaaaaaaaa',resp.VisitaClientesMotivoMes)
+      this.preguntas = resp.VisitaClientesMotivoMes.map((resp: any) => {
           return {
             abr: Number(resp.Abr),
             ago: Number(resp.Ago),
