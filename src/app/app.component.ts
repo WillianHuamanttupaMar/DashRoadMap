@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
 
   groupByPercente(array: any) {
     const resMonth = array.reduce((a: any, data: any) => {
+      // console.log(data)
       a[data.preguntas] = a[data.preguntas] || { pregunta: data.preguntas, valor: 0, contador: 0, porcentaje: 0, mes: data.mes }
       a[data.preguntas].valor += data.respuesta_valor
       a[data.preguntas].contador += data.contador
@@ -143,51 +144,52 @@ export class AppComponent implements OnInit {
       // const groupQuestionsTwo = this.groupByTwo(this.camiones, 'preguntas');
       // console.log(...groupQuestionsTwo)
 
-      const enero = groupQuestions['January'];
-      // const febrero = groupQuestions['February'];
-      const marzo = groupQuestions['March'];
-      const abril = groupQuestions['April'];
-      const mayo = groupQuestions['May'];
-      const junio = groupQuestions['June'];
-      const julio = groupQuestions['July'];
-      const agosto = groupQuestions['August'];
+      const enero = groupQuestions['01'];
+      const febrero = groupQuestions['02'];
+      const marzo = groupQuestions['03'];
+      const abril = groupQuestions['04\r\n'];
+      // const mayo = groupQuestions['May'];
+      const junio = groupQuestions['06'];
+      // const julio = groupQuestions['July'];
+      // const agosto = groupQuestions['August'];
       // const septiembre = groupQuestions['September'];
       // const octubre = groupQuestions['October'];
       // const noviembre = groupQuestions['November'];
       // const diciembre = groupQuestions['December'];
 
-      console.log(enero)
-      let eneroResultados
-      if (enero) eneroResultados = this.groupByPercente(enero);
-      // const febreroResultados = this.groupByPercente(febrero);
+      // console.log(enero)
+      const eneroResultados = this.groupByPercente(enero);
+      const febreroResultados = this.groupByPercente(febrero);
       const marzoResultados = this.groupByPercente(marzo);
       const abrilResultados = this.groupByPercente(abril);
-      const mayoResultados = this.groupByPercente(mayo);
+      // const mayoResultados = this.groupByPercente(mayo);
       const junioResultados = this.groupByPercente(junio);
-      const julioResultados = this.groupByPercente(julio);
+      // const julioResultados = this.groupByPercente(julio);
       let agostoResultados
-      if (agosto) agostoResultados = this.groupByPercente(agosto);
+      // if (agosto) agostoResultados = this.groupByPercente(agosto);
       // const septiembreResultados = this.groupByPercente(septiembre);
       // const octubreResultados = this.groupByPercente(octubre);
       // const noviembreResultados = this.groupByPercente(noviembre);
       // const diciembreResultados = this.groupByPercente(diciembre);
 
-      console.log(agostoResultados)
+      // console.log(junioResultados)
 
       const todos = [
-        // ...eneroResultados,
-        // ...febreroResultados,
+        ...eneroResultados,
+        ...febreroResultados,
         ...marzoResultados,
         ...abrilResultados,
-        ...mayoResultados,
+        // ...mayoResultados,
         ...junioResultados,
-        ...julioResultados,
-        ...agostoResultados,
+        // ...julioResultados,
+        // ...agostoResultados,
         // ...septiembreResultados,
         // ...octubreResultados,
         // ...noviembreResultados,
         // ...diciembreResultados
       ];
+
+      console.log(todos)
       // console.log(abrilResultados);
       // console.log(agostoResultados);
 
@@ -205,7 +207,7 @@ export class AppComponent implements OnInit {
         data.unshift({ mes: 'January', valor: 0, porcentaje: 0, contador: 0}, { mes: 'February', valor: 0, porcentaje: 0, contador: 0});
         data.unshift({})
         // console.log(mes)
-        this.pruebatempora.push({ pregunta, data })
+        // this.pruebatempora.push({ pregunta, data })
       }
 
       console.log(this.pruebatempora)
