@@ -61,10 +61,8 @@ export class JsonService {
   getClientmes(){
     let params = new HttpParams();
     params = params.append('centro', this.usuariocentro);
-    params = params.append('fechaIni', '2021-01-01');
+    params = params.append('fechaIni  ', '2021-01-01');
     params = params.append('fechaFin', '2021-12-31');
-    console.log(`${url}/owdT2/VisitaClientesMotivoCalidadMes.php`);
-
     return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadMes.php`,{params});
   }
   getClientRuta() {
