@@ -1,0 +1,90 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="mt-5">
+    <div class="table-responsive-sm ">
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th>Preguntas</th>
+            <th>Ene</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>Abr</th>
+            <th>May</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Ago</th>
+            <th>Set</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dic</th>
+            <th>Total General</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pregunta of preguntas">
+            <td>
+              <p class="moretext">
+                {{pregunta.pregunta}}
+              </p>
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.94 >pregunta.ene,  'bg-warning': 0.99 >= pregunta.ene, 'bg-success': 0.99 < pregunta.ene, 'bg-light': 0.05 > pregunta.ene }">
+              {{pregunta.ene | number : '1.2-2'}}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.feb,  'bg-warning': 0.99 >= pregunta.feb, 'bg-success': 0.99 < pregunta.feb, 'bg-light': 0.05 > pregunta.feb }">
+              {{pregunta.feb | number : '1.2-2' }}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.mar,  'bg-warning': 0.99 >= pregunta.mar, 'bg-success': 0.99 < pregunta.mar, 'bg-light': 0.05 > pregunta.mar }">
+              {{pregunta.mar | number : '1.2-2'}}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.abr,  'bg-warning': 0.99 >= pregunta.abr, 'bg-success': 0.99 < pregunta.abr, 'bg-light': 0.05 > pregunta.abr }">
+              {{pregunta.abr | number : '1.2-2'}}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.may,  'bg-warning': 0.99 >= pregunta.may, 'bg-success': 0.99 < pregunta.may, 'bg-light': 0.05 > pregunta.may  }">
+              {{pregunta.may | number : '1.2-2' }}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.jun,  'bg-warning': 0.99 >= pregunta.jun, 'bg-success': 0.99 < pregunta.jun, 'bg-light': 0.05 > pregunta.jun }">
+              {{pregunta.jun | number : '1.2-2'}}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.jul,  'bg-warning': 0.99 >= pregunta.jul, 'bg-success': 0.99 < pregunta.jul, 'bg-light': 0.05 > pregunta.jul }">
+              {{pregunta.jul | number : '1.2-2'}}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.ago,  'bg-warning': 0.99 >= pregunta.ago, 'bg-success': 0.99 < pregunta.ago, 'bg-light': 0.05 > pregunta.ago  }">
+              {{pregunta.ago | number : '1.2-2'}}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.sep,  'bg-warning': 0.99 >= pregunta.sep, 'bg-success': 0.99 < pregunta.sep, 'bg-light': 0.05 > pregunta.sep  }">
+              {{pregunta.sep | number : '1.2-2'}}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.oct,  'bg-warning': 0.99 >= pregunta.oct, 'bg-success': 0.99 < pregunta.oct, 'bg-light': 0.05 > pregunta.oct  }">
+              {{pregunta.oct | number : '1.2-2'}}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.nov,  'bg-warning': 0.99 >= pregunta.nov, 'bg-success': 0.99 < pregunta.nov,'bg-light': 0.05 > pregunta.nov  }">
+              {{pregunta.nov | number : '1.2-2'}}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.dic,  'bg-warning': 0.99 >= pregunta.dic, 'bg-success': 0.99 < pregunta.dic, 'bg-light': 0.05 > pregunta.dic }">
+              {{pregunta.dic | number : '1.2-2'}}
+            </td>
+            <td
+              [ngClass]="{'bg-danger': 0.95 > pregunta.may,  'bg-warning': 0.99 >= pregunta.may, 'bg-success': 0.99 < pregunta.may }">
+              {{(pregunta.may + pregunta.jun + pregunta.jul + pregunta.ago) / 4 | number : '1.2-2'}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

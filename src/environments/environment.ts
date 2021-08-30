@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  base_url: "https://bk77.co/json"
+  base_url: "https://www.bk77.co/json"
 };
 
 /*
