@@ -61,7 +61,7 @@ export class JsonService {
   getClientmes(){
     let params = new HttpParams();
     params = params.append('centro', this.usuariocentro);
-    params = params.append('fechaIni  ', '2021-01-01');
+    params = params.append('fechaIni', '2021-01-01');
     params = params.append('fechaFin', '2021-12-31');
     return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadMes.php`,{params});
   }
@@ -69,6 +69,19 @@ export class JsonService {
     return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadRuta.php`);
   }
 
+  getLlegadaCam(){
+    let params = new HttpParams();
+    params = params.append('centro', this.usuariocentro);
+    params = params.append('fechaIni', '2021-01-01');
+    params = params.append('fechaFin', '2021-12-31');
+    console.log(`${url}/owdT2/salidadeCamionesMes.php`);
+    return this.http.get(`${url}/owdT2/llegadadeCamionesMes.php`,{params});
+
+  }
+
+  getCamionesRuta() {
+    return this.http.get(`${url}/owdT2/llegadadeCamionesRuta.php`);
+
 }
 
-
+}

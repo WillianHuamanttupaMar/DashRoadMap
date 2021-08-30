@@ -10,6 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AdvanceMonthComponent } from './pages/advance-month/advance-month.component';
 import { ResporteZoneComponent } from './pages/resporte-zone/resporte-zone.component';
 import { VisitClientsComponent } from './pages/visit-clients/visit-clients.component';
+import { ArrivaltrucksComponent } from './pages/arrivaltrucks/arrivaltrucks.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { VisitClientsComponent } from './pages/visit-clients/visit-clients.compo
     AppComponent,
     AdvanceMonthComponent,
     ResporteZoneComponent,
-    VisitClientsComponent
+    VisitClientsComponent,
+    ArrivaltrucksComponent
   ],
   imports: [
     BrowserModule,
