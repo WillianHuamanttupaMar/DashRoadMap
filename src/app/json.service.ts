@@ -34,16 +34,21 @@ export class JsonService {
     this.usuarioid = this.cookieService.get('usuarioid');
    }
 
-  getJson(){
+   getJson(){
     let params = new HttpParams();
-    // params = params.append('centro', this.usuariocentro);
-    // params = params.append('fechaIni', '2021-01-01');
-    // params = params.append('fechaFin', '2021-12-31');
-    return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadMes.php?centro=BK77&fechaIni=2021-01-01&fechaFin=2021-12-31`);
-  }
+    params = params.append('centro', this.usuariocentro);
+    params = params.append('fechaIni', '2021-05-01');
+    params = params.append('fechaFin', '2021-08-31');
+    console.log(`${url}/owdT2/salidadeCamionesMes.php`);
+    return this.http.get(`${url}/owdT2/salidadeCamionesMes.php`,{params});
+   }
 
-  getData() {
-    return this.http.get(`${url}/owdT2/salidadeCamionesRuta.php`);
+  getData( fechaini: string, fechafin: string) {
+    let params = new HttpParams();
+    params = params.append('centro', this.usuariocentro);
+    params = params.append('fechaIni', fechaini);
+    params = params.append('fechaFin', fechafin);
+    return this.http.get(`${url}/owdT2/salidadeCamionesRuta.php`, { params });
   }
 
   getSorting() {
@@ -52,18 +57,6 @@ export class JsonService {
     return this.http.get(`${url}/dashboard/sorting`, {params})
   }
 
-
-  getClientmes(){
-    let params = new HttpParams();
-    params = params.append('centro', this.usuariocentro);
-    params = params.append('fechaIni', '2021-01-01');
-    params = params.append('fechaFin', '2021-12-31');
-    return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadMes.php`,{params});
-  }
-
-  getClientRuta() {
-    return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadRuta.php`);
-  }
 
   getLlegadaCam(){
     let params = new HttpParams();
@@ -83,4 +76,104 @@ export class JsonService {
     return this.http.get(`${url}/owdT2/llegadadeCamionesRuta.php`, { params });
 }
 
+getEntregaClientMes(){
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', '2021-05-01');
+  params = params.append('fechaFin', '2021-08-31');
+  console.log(`${url}/owdT2/ProcesodeentregaclientesMes.php`);
+  return this.http.get(`${url}/owdT2/ProcesodeentregaclientesMes.php`,{params});
+
+}
+
+getEntregaClientRuta( fechaini: string, fechafin: string) {
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', fechaini);
+  params = params.append('fechaFin', fechafin);
+  return this.http.get(`${url}/owdT2/ProcesodeentregaclientesRuta.php`, { params });
+}
+
+getClientCalidadMes(){
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', '2021-01-01');
+  params = params.append('fechaFin', '2021-12-31');
+  console.log(`${url}/owdT2/VisitaClientesMotivoCalidadMes.php`);
+  return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadMes.php`,{params});
+
+}
+
+getClientCalidadRuta( fechaini: string, fechafin: string) {
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', fechaini);
+  params = params.append('fechaFin', fechafin);
+  return this.http.get(`${url}/owdT2/VisitaClientesMotivoCalidadRuta.php`, { params });
+}
+getmercadoSeguridadMes(){
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', '2021-01-01');
+  params = params.append('fechaFin', '2021-12-31');
+  console.log(`${url}/owdT2/VisitamercadoporseguridadMes.php`);
+  return this.http.get(`${url}/owdT2/VisitamercadoporseguridadMes.php`,{params});
+
+}
+
+getmercadoSeguridadRuta( fechaini: string, fechafin: string) {
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', fechaini);
+  params = params.append('fechaFin', fechafin);
+  return this.http.get(`${url}/owdT2/VisitamercadoporseguridadRuta.php`, { params });
+}
+getclienteServicioMes(){
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', '2021-01-01');
+  params = params.append('fechaFin', '2021-12-31');
+  return this.http.get(`${url}/owdT2/VisitaclientesServicioMes.php`,{params});
+
+}
+
+getclienteServicioRuta( fechaini: string, fechafin: string) {
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', fechaini);
+  params = params.append('fechaFin', fechafin);
+  return this.http.get(`${url}/owdT2/VisitaclientesServicioRuta.php`, { params });
+}
+getrechazosMes(){
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', '2021-01-01');
+  params = params.append('fechaFin', '2021-12-31');
+  return this.http.get(`${url}/owdT2/RechazosMes.php`,{params});
+
+}
+
+getrechazosRuta( fechaini: string, fechafin: string) {
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', fechaini);
+  params = params.append('fechaFin', fechafin);
+  return this.http.get(`${url}/owdT2/RechazosRuta.php`, { params });
+}
+getproducpocMes(){
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', '2021-01-01');
+  params = params.append('fechaFin', '2021-12-31');
+  return this.http.get(`${url}/owdT2/ProductividadenelPOCMes.php`,{params});
+
+}
+
+getproducpocRuta( fechaini: string, fechafin: string) {
+  let params = new HttpParams();
+  params = params.append('centro', this.usuariocentro);
+  params = params.append('fechaIni', fechaini);
+  params = params.append('fechaFin', fechafin);
+  return this.http.get(`${url}/owdT2/ProductividadenelPOCRuta.php`, { params });
+}
 }

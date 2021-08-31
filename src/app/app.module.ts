@@ -9,9 +9,14 @@ import { ChartsModule } from 'ng2-charts';
 import { CookieService } from 'ngx-cookie-service';
 import { AdvanceMonthComponent } from './pages/advance-month/advance-month.component';
 import { ResporteZoneComponent } from './pages/resporte-zone/resporte-zone.component';
-import { VisitClientsComponent } from './pages/visit-clients/visit-clients.component';
 import { ArrivaltrucksComponent } from './pages/arrivaltrucks/arrivaltrucks.component';
 import { FormsModule } from '@angular/forms';
+import { EntregaClientesComponent } from './pages/entrega-clientes/entrega-clientes.component';
+import { ClientvisitCalidadComponent } from './pages/clientvisit-calidad/clientvisit-calidad.component';
+import { MercadoSeguridadComponent } from './pages/mercado-seguridad/mercado-seguridad.component';
+import { ClienteServicioComponent } from './pages/cliente-servicio/cliente-servicio.component';
+import { RechazosComponent } from './pages/rechazos/rechazos.component';
+import { ProductividadPOCComponent } from './pages/productividad-poc/productividad-poc.component';
 
 
 @NgModule({
@@ -19,8 +24,13 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     AdvanceMonthComponent,
     ResporteZoneComponent,
-    VisitClientsComponent,
-    ArrivaltrucksComponent
+    ArrivaltrucksComponent,
+    EntregaClientesComponent,
+    ClientvisitCalidadComponent,
+    MercadoSeguridadComponent,
+    ClienteServicioComponent,
+    RechazosComponent,
+    ProductividadPOCComponent
   ],
   imports: [
     BrowserModule,

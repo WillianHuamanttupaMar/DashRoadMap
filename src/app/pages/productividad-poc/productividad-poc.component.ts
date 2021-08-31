@@ -4,11 +4,11 @@ import { ChartDataSets, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 
 @Component({
-  selector: 'app-arrivaltrucks',
-  templateUrl: './arrivaltrucks.component.html',
-  styleUrls: ['./arrivaltrucks.component.css']
+  selector: 'app-productividad-poc',
+  templateUrl: './productividad-poc.component.html',
+  styleUrls: ['./productividad-poc.component.css']
 })
-export class ArrivaltrucksComponent implements OnInit {
+export class ProductividadPOCComponent implements OnInit {
   preguntas:any [] = [];
   empresas:any [] = [];
 
@@ -61,16 +61,16 @@ export class ArrivaltrucksComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getLlegadaCam();
-    this.getCamionesRuta();
+    this.getproducpocMes();
+    this.getproducpocRuta();
   }
   changeChart() {
     this.isChart = !this.isChart;
   }
 
-  getLlegadaCam(){
-    this.jsonService.getLlegadaCam().subscribe((resp: any) => {
-      this.preguntas = resp.LLegadaCamionesMes.map((resp: any) => {
+  getproducpocMes(){
+    this.jsonService.getproducpocMes().subscribe((resp: any) => {
+      this.preguntas = resp.VisitamercadoporseguridadMes.map((resp: any) => {
           return {
             abr: Number(resp.Abr),
             ago: Number(resp.Ago),
@@ -89,8 +89,8 @@ export class ArrivaltrucksComponent implements OnInit {
       })
     })
   }
-  getCamionesRuta() {
-    this.jsonService.getCamionesRuta(this.fechaInicio, this.fechaFin).subscribe((resp: any) => {
+  getproducpocRuta() {
+    this.jsonService.getproducpocRuta(this.fechaInicio, this.fechaFin).subscribe((resp: any) => {
       this.proveedores = [...new Set(resp.LLegadaCamionesCumplimiento.map((e:any) => e.empresa))]
         this.bks = [...new Set(this.proveedores.map(b => b.bk))];
         this.empresas = resp.LLegadaCamionesCumplimiento.map((res: any) => {
@@ -160,3 +160,4 @@ export class ArrivaltrucksComponent implements OnInit {
     }
 
 }
+

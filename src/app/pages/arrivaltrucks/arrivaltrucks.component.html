@@ -1,92 +1,8 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <div class="mt-5">
-    <h5>Avance mensual</h5>
-    <div class="row mb-3">
-      <div class="col-md-4">
-        <!-- <label for="inputEmail4" class="form-label">Fecha inicio</label> -->
-        <input [(ngModel)]="fechaInicio" type="date" class="form-control" placeholder="First name" aria-label="First name">
-      </div>
-      <div class="col-md-4">
-        <!-- <label for="inputEmail4" class="form-label">Fecha fin</label> -->
-        <input [(ngModel)]="fechaFin" type="date" class="form-control" placeholder="Last name" aria-label="Last name">
-      </div>
-      <div class="col-md-4">
-        <button (click)="getCamionesRuta()" type="button" class="btn btn-primary">Buscar</button>
-      </div>
-    </div>
-    <div class="table-responsive-sm">
-      <table class="table table-sm">
-        <thead>
-          <th *ngIf="companyName">{{companyName}}</th>
-          <th *ngIf="!companyName">Empresas</th>
-          <th *ngIf="!companyName">Bk</th>
-          <th>Ene</th>
-          <th>Feb</th>
-          <th>Mar</th>
-          <th>Abr</th>
-          <th>May</th>
-          <th>Jun</th>
-          <th>Jul</th>
-          <th>Ago</th>
-          <th>Set</th>
-          <th>Oct</th>
-          <th>Nov</th>
-          <th>Dic</th>
-          <th>Total General</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let empresa of dataEmpresa">
-            <td *ngIf="!companyName">{{empresa.empresa}}</td>
-            <td>{{empresa.bk}}</td>
-            <td>
-              {{empresa.ene}}
-            </td>
-            <td>
-              {{empresa.feb}}
-            </td>
-            <td>
-              {{empresa.mar}}
-            </td>
-            <td>
-              {{empresa.abr}}
-            </td>
-            <td>
-              {{empresa.may}}
-            </td>
-            <td>
-              {{empresa.jun}}
-            </td>
-            <td>
-              {{empresa.jul}}
-            </td>
-            <td>
-              {{empresa.ago}}
-            </td>
-            <td>
-              {{empresa.sep}}
-            </td>
-            <td>
-              {{empresa.oct}}
-            </td>
-            <td>
-              {{empresa.nov}}
-            </td>
-            <td>
-              {{empresa.dic}}
-            </td>
-            <td>
-              {{empresa.ene + empresa.feb + empresa.mar + empresa.abr + empresa.may + empresa.jun + empresa.jul +
-              empresa.ago + empresa.sep + empresa.oct + empresa.nov + empresa.dic}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
 
   <div class="mt-5">
+    <h5 class="text-center">Tabla general de OWD Proceso de Llegada de unidades</h5>
     <div class="table-responsive-sm ">
       <table class="table table-sm">
         <thead>
@@ -171,6 +87,112 @@
       </table>
     </div>
   </div>
+
+  <div *ngIf="!isChart"></div>
+    <div class="mt-5">
+      <h5 class="text-center">Avance mensual de OWD Proceso de Llegada de unidades</h5>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <!-- <label for="inputEmail4" class="form-label">Fecha inicio</label> -->
+          <input [(ngModel)]="fechaInicio" type="date" class="form-control" placeholder="First name" aria-label="First name">
+        </div>
+        <div class="col-md-4">
+          <!-- <label for="inputEmail4" class="form-label">Fecha fin</label> -->
+          <input [(ngModel)]="fechaFin" type="date" class="form-control" placeholder="Last name" aria-label="Last name">
+        </div>
+        <div class="col-md-4">
+          <button (click)="getCamionesRuta()" type="button" class="btn btn-primary">Buscar</button>
+        </div>
+      </div>
+
+    <div class="row mt-3">
+      <div class="col">
+        <select class="form-select" (change)="selectEmpresa($event)">
+          <option selected></option>
+          <option value="todos">Todos</option>
+          <option *ngFor="let proveedor of proveedores" [value]="proveedor">{{proveedor}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="mt-5">
+      <div class="table-responsive-sm ">
+        <table class="table table-sm">
+          <thead>
+            <th *ngIf="companyName">{{companyName}}</th>
+            <th *ngIf="!companyName">Empresas</th>
+            <th *ngIf="!companyName">Bk</th>
+            <th>Ene</th>
+            <th>Feb</th>
+            <th>Mar</th>
+            <th>Abr</th>
+            <th>May</th>
+            <th>Jun</th>
+            <th>Jul</th>
+            <th>Ago</th>
+            <th>Set</th>
+            <th>Oct</th>
+            <th>Nov</th>
+            <th>Dic</th>
+            <th>Total General</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let empresa of dataEmpresa">
+              <td *ngIf="!companyName">{{empresa.empresa}}</td>
+              <td>{{empresa.bk}}</td>
+              <td>
+                {{empresa.ene}}
+              </td>
+              <td>
+                {{empresa.feb}}
+              </td>
+              <td>
+                {{empresa.mar}}
+              </td>
+              <td>
+                {{empresa.abr}}
+              </td>
+              <td>
+                {{empresa.may}}
+              </td>
+              <td>
+                {{empresa.jun}}
+              </td>
+              <td>
+                {{empresa.jul}}
+              </td>
+              <td>
+                {{empresa.ago}}
+              </td>
+              <td>
+                {{empresa.sep}}
+              </td>
+              <td>
+                {{empresa.oct}}
+              </td>
+              <td>
+                {{empresa.nov}}
+              </td>
+              <td>
+                {{empresa.dic}}
+              </td>
+              <td>
+                {{empresa.ene + empresa.feb + empresa.mar + empresa.abr + empresa.may + empresa.jun + empresa.jul +
+                empresa.ago + empresa.sep + empresa.oct + empresa.nov + empresa.dic}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="mt-5">
+      <h5 class="text-center">Gráfico de OWD Proceso de Llegada de unidades</h5>
+      <div *ngIf="isChart" style="display: block">
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+          [legend]="barChartLegend" [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+
+  </div>
+
 </div>
-
-

@@ -3,12 +3,13 @@ import { JsonService } from './../../json.service';
 import { ChartDataSets, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 
+
 @Component({
-  selector: 'app-arrivaltrucks',
-  templateUrl: './arrivaltrucks.component.html',
-  styleUrls: ['./arrivaltrucks.component.css']
+  selector: 'app-clientvisit-calidad',
+  templateUrl: './clientvisit-calidad.component.html',
+  styleUrls: ['./clientvisit-calidad.component.css']
 })
-export class ArrivaltrucksComponent implements OnInit {
+export class ClientvisitCalidadComponent implements OnInit {
   preguntas:any [] = [];
   empresas:any [] = [];
 
@@ -22,8 +23,8 @@ export class ArrivaltrucksComponent implements OnInit {
 
   isChart: boolean = true;
 
-  fechaInicio: string = '2021-05-01';
-  fechaFin: string = '2021-08-31';
+  fechaInicio: string = '2021-01-01';
+  fechaFin: string = '2021-12-31';
 
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
@@ -61,16 +62,16 @@ export class ArrivaltrucksComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getLlegadaCam();
-    this.getCamionesRuta();
+    this.getClientCalidadMes();
+    this.getClientCalidadRuta();
   }
   changeChart() {
     this.isChart = !this.isChart;
   }
 
-  getLlegadaCam(){
-    this.jsonService.getLlegadaCam().subscribe((resp: any) => {
-      this.preguntas = resp.LLegadaCamionesMes.map((resp: any) => {
+  getClientCalidadMes(){
+    this.jsonService.getClientCalidadMes().subscribe((resp: any) => {
+      this.preguntas = resp.VisitaClientesMotivoMes.map((resp: any) => {
           return {
             abr: Number(resp.Abr),
             ago: Number(resp.Ago),
@@ -89,11 +90,11 @@ export class ArrivaltrucksComponent implements OnInit {
       })
     })
   }
-  getCamionesRuta() {
-    this.jsonService.getCamionesRuta(this.fechaInicio, this.fechaFin).subscribe((resp: any) => {
-      this.proveedores = [...new Set(resp.LLegadaCamionesCumplimiento.map((e:any) => e.empresa))]
+  getClientCalidadRuta() {
+    this.jsonService.getClientCalidadRuta(this.fechaInicio, this.fechaFin).subscribe((resp: any) => {
+      this.proveedores = [...new Set(resp.VistaClientesMotivoCalidadRUTA.map((e:any) => e.empresa))]
         this.bks = [...new Set(this.proveedores.map(b => b.bk))];
-        this.empresas = resp.LLegadaCamionesCumplimiento.map((res: any) => {
+        this.empresas = resp.VistaClientesMotivoCalidadRUTA.map((res: any) => {
           console.log()
           return {
             abr: Number(res.Abr),

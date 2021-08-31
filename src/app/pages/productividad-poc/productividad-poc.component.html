@@ -2,7 +2,7 @@
 <div class="container">
 
   <div class="mt-5">
-    <h5 class="text-center">Tabla general de OWD Proceso Salida de Camiones</h5>
+    <h5 class="text-center">Tabla general de OWD Visita clientes - Productividad en el POC</h5>
     <div class="table-responsive-sm ">
       <table class="table table-sm">
         <thead>
@@ -90,7 +90,7 @@
 
   <div *ngIf="!isChart"></div>
     <div class="mt-5">
-      <h5 class="text-center">Avance mensual de OWD Proceso Salida de Camiones</h5>
+      <h5 class="text-center">Avance mensual de OWD Visita clientes - Productividad en el POC</h5>
       <div class="row mb-3">
         <div class="col-md-4">
           <!-- <label for="inputEmail4" class="form-label">Fecha inicio</label> -->
@@ -185,7 +185,7 @@
       </div>
     </div>
     <div class="mt-5">
-      <h5 class="text-center">Gráfico de OWD Proceso Salida de Camiones</h5>
+      <h5 class="text-center">Gráfico de OWD Visita clientes - Productividad en el POC</h5>
       <div *ngIf="isChart" style="display: block">
         <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
           [legend]="barChartLegend" [chartType]="barChartType">

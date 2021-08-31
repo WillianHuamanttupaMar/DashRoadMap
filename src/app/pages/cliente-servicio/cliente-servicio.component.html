@@ -2,7 +2,7 @@
 <div class="container">
 
   <div class="mt-5">
-    <h5 class="text-center">Tabla general de OWD Proceso Salida de Camiones</h5>
+    <h5 class="text-center">Tabla general de OWD Visita clientes - Servicio</h5>
     <div class="table-responsive-sm ">
       <table class="table table-sm">
         <thead>
@@ -80,7 +80,7 @@
             </td>
             <td
               [ngClass]="{'bg-danger': 0.95 > pregunta.may,  'bg-warning': 0.99 >= pregunta.may, 'bg-success': 0.99 < pregunta.may }">
-              {{(pregunta.may + pregunta.jun + pregunta.jul + pregunta.ago) / 4 | number : '1.2-2'}}
+              {{(pregunta.ene + pregunta.feb + pregunta.mar + pregunta.abr + pregunta.may + pregunta.jun + pregunta.jul + pregunta.ago) / 7 | number : '1.2-2'}}
             </td>
           </tr>
         </tbody>
@@ -90,7 +90,7 @@
 
   <div *ngIf="!isChart"></div>
     <div class="mt-5">
-      <h5 class="text-center">Avance mensual de OWD Proceso Salida de Camiones</h5>
+      <h5 class="text-center">Avance mensual de OWD Visita clientes - Servicio</h5>
       <div class="row mb-3">
         <div class="col-md-4">
           <!-- <label for="inputEmail4" class="form-label">Fecha inicio</label> -->
@@ -101,7 +101,7 @@
           <input [(ngModel)]="fechaFin" type="date" class="form-control" placeholder="Last name" aria-label="Last name">
         </div>
         <div class="col-md-4">
-          <button (click)="getproducpocRuta()" type="button" class="btn btn-primary">Buscar</button>
+          <button (click)="getclienteServicioRuta()" type="button" class="btn btn-primary">Buscar</button>
         </div>
       </div>
 
@@ -185,7 +185,7 @@
       </div>
     </div>
     <div class="mt-5">
-      <h5 class="text-center">Gráfico de OWD Proceso Salida de Camiones</h5>
+      <h5 class="text-center">Gráfico de OWD Visita clientes - Servicio</h5>
       <div *ngIf="isChart" style="display: block">
         <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
           [legend]="barChartLegend" [chartType]="barChartType">
