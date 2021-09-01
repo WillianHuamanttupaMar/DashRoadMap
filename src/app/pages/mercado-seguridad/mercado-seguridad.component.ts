@@ -22,8 +22,8 @@ export class MercadoSeguridadComponent implements OnInit {
 
   isChart: boolean = true;
 
-  fechaInicio: string = '2021-05-01';
-  fechaFin: string = '2021-08-31';
+  fechaInicio: string = '2021-01-01';
+  fechaFin: string = '2021-12-31';
 
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
