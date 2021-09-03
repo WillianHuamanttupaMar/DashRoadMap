@@ -9,6 +9,7 @@ import { AdvanceMonthComponent } from './pages/advance-month/advance-month.compo
 import { ArrivaltrucksComponent } from './pages/arrivaltrucks/arrivaltrucks.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,11 @@ const routes: Routes = [
     path: 'poc',
   component: ProductividadPOCComponent
   },
+  {
+    path: 'dashboard',
+  component: DashboardComponent
+  },
+
   { path: '', redirectTo: 'avance-reporte', pathMatch: 'full' },
 ];
 

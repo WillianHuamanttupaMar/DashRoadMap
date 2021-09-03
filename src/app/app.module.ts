@@ -17,6 +17,7 @@ import { MercadoSeguridadComponent } from './pages/mercado-seguridad/mercado-seg
 import { ClienteServicioComponent } from './pages/cliente-servicio/cliente-servicio.component';
 import { RechazosComponent } from './pages/rechazos/rechazos.component';
 import { ProductividadPOCComponent } from './pages/productividad-poc/productividad-poc.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ProductividadPOCComponent } from './pages/productividad-poc/productivid
     MercadoSeguridadComponent,
     ClienteServicioComponent,
     RechazosComponent,
-    ProductividadPOCComponent
+    ProductividadPOCComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
