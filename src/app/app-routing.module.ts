@@ -1,3 +1,4 @@
+import { RetornoUnidadesT2Component } from './pages/retorno-unidades-t2/retorno-unidades-t2.component';
 import { MercadoSeguridadComponent } from './pages/mercado-seguridad/mercado-seguridad.component';
 import { EntregaClientesComponent } from './pages/entrega-clientes/entrega-clientes.component';
 import { AdvanceMonthComponent } from './pages/advance-month/advance-month.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
   component: DashboardComponent
+  },
+  {
+    path: 'retorno-unidades',
+  component: RetornoUnidadesT2Component
   },
 
   { path: '', redirectTo: 'avance-reporte', pathMatch: 'full' },

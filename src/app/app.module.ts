@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { EntregaClientesComponent } from './pages/entrega-clientes/entrega-clientes.component';
 import { MercadoSeguridadComponent } from './pages/mercado-seguridad/mercado-seguridad.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { RetornoUnidadesT2Component } from './pages/retorno-unidades-t2/retorno-unidades-t2.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     AdvanceMonthComponent,
     EntregaClientesComponent,
     MercadoSeguridadComponent,
-    DashboardComponent
+    DashboardComponent,
+    RetornoUnidadesT2Component
   ],
   imports: [
     BrowserModule,
